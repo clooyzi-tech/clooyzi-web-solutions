@@ -1,9 +1,0 @@
-{
-  "/page": "app/page.js",
-  "/photohub/page": "app/photohub/page.js",
-  "/texthub/page": "app/texthub/page.js",
-  "/software/page": "app/software/page.js",
-  "/animationhub/page": "app/animationhub/page.js",
-  "/audiohub/page": "app/audiohub/page.js",
-  "/videohub/page": "app/videohub/page.js"
-}
