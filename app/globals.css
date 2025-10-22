@@ -1,6 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+
+
 
 /* Base body font and background */
 body {
@@ -135,26 +140,9 @@ html {
 
 
 
-/*-BUTTON GET STARTED main page  - CENTERED NEUMORPHISM */
-@layer utilities {
-  .shadow-neumorphism-mainpage {
-    background-color: #313131; /* ensure white background */
-    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1),
-                -1px -1px  6px rgba(179, 179, 179, 0.9);
-    transition: box-shadow 0.9s ease, transform 0.9s ease, background-color 0.9s ease;
-  }
-
-  .shadow-neumorphism-hover-mainpage {
-    background-color: #ebebeb; /* keep white on hover */
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.15),
-                -2px -2px 6px rgba(187, 186, 186, 0.85);
-    color: #313131;
-    transform: scale(1.05);
-  }
-}
 
 
-/*-BUTTON GET STARTED software page - CENTERED NEUMORPHISM */
+/*-BUTTON GET STARTED software page - CENTERED NEUMORPHISM  nav button nav button nav button*/ 
 @layer utilities {
   .shadow-neumorphism-softwarepage {
     background-color: #313131; /* ensure white background */
@@ -172,101 +160,54 @@ html {
   }
 }
 
-/*-BUTTON GET STARTED video page - CENTERED NEUMORPHISM */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 💎 CLOOZYI NEUMORPHIC BUTTON DESIGN */
 @layer utilities {
-  .shadow-neumorphism-videopage {
-    background-color: #313131; /* ensure white background */
+  .button-shadow-clooyzi {
+    background-color: #313131; /* dark gray base */
+    color: #ffffff;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    padding: 0.75rem 1.8rem;
+    border-radius: 12px; /* subtle rounded corners for neumorphism */
     box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1),
-                -1px -1px  6px rgba(0, 217, 120, 0.9);
-                
-    transition: box-shadow 0.9s ease, transform 0.9s ease, background-color 0.9s ease;
+                -1px -1px  6px rgba(221, 0, 255, 0.9); /* light top-left & dark bottom-right */
+    display: inline-block; /* ensures no flex needed */
+    text-align: center;
+    cursor: pointer;
+    transition: 
+      box-shadow 0.4s ease, 
+      transform 0.3s ease, 
+      background-color 0.4s ease, 
+      color 0.3s ease;
   }
-  .shadow-neumorphism-hover-videopage {
-    background-color: #03934d; /* keep white on hover */
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.15),
-                -2px -2px 6px rgba(187, 186, 186, 0.85);
+
+  /* Hover Animation */
+  .button-shadow-clooyzi-hover:hover {
+    background-color: #7503b8; /* vibrant purple on hover */
+    box-shadow: 2px 2px 10px rgba(255, 255, 255, 0.15),
+                -2px -2px 6px rgba(255, 255, 255, 0.25);
     color: #eae8e8;
     transform: scale(1.05);
   }
-}
 
-
-/*-BUTTON GET STARTED photo page - CENTERED NEUMORPHISM */
-@layer utilities {
-  .shadow-neumorphism-photopage{
-    background-color: #313131; /* ensure white background */
-    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1),
-                -1px -1px  6px rgba(0, 94, 255, 0.953);
-                
-    transition: box-shadow 0.9s ease, transform 0.9s ease, background-color 0.9s ease;
-  }
-  .shadow-neumorphism-hover-photopage{
-    background-color: #0066e3; /* keep white on hover */
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.15),
-                -2px -2px 6px rgba(187, 186, 186, 0.85);
-    color: #eae8e8;
-    transform: scale(1.05);
-  }
-}
-
-
-/*-BUTTON GET STARTED text page - CENTERED NEUMORPHISM */
-@layer utilities {
-  .shadow-neumorphism-textpage {
-    background-color: #313131; /* ensure white background */
-    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1),
-                -1px -1px  6px rgba(251, 255, 0, 0.9);
-                
-    transition: box-shadow 0.9s ease, transform 0.9s ease, background-color 0.9s ease;
-  }
-  .shadow-neumorphism-hover-textpage {
-    background-color: #d0e301; /* keep white on hover */
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.15),
-                -2px -2px 6px rgba(187, 186, 186, 0.85);
-    color: #414141;
-    transform: scale(1.05);
-  }
-}
-
-
-
-
-
-/*-BUTTON GET STARTED audio page - CENTERED NEUMORPHISM */
-@layer utilities {
-  .shadow-neumorphism-audiopage {
-    background-color: #313131; /* ensure white background */
-    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1),
-                -1px -1px  6px rgb(212, 2, 2);
-                
-    transition: box-shadow 0.9s ease, transform 0.9s ease, background-color 0.9s ease;
-  }
-  .shadow-neumorphism-hover-audiopage {
-    background-color: #d70202; /* keep white on hover */
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.15),
-                -2px -2px 6px rgba(187, 186, 186, 0.85);
-    color: #eae8e8;
-    transform: scale(1.05);
-  }
-}
-
-
-
-
-/*-BUTTON GET STARTED animation page - CENTERED NEUMORPHISM */
-@layer utilities {
-  .shadow-neumorphism-animationpage {
-    background-color: #313131; /* ensure white background */
-    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1),
-                -1px -1px  6px rgb(255, 128, 0);
-                
-    transition: box-shadow 0.9s ease, transform 0.9s ease, background-color 0.9s ease;
-  }
-  .shadow-neumorphism-hover-animationpage {
-    background-color: #ff9102; /* keep white on hover */
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.15),
-                -2px -2px 6px rgba(187, 186, 186, 0.85);
-    color: #515151;
-    transform: scale(1.05);
+  /* Click / Active Animation */
+  .button-shadow-clooyzi-active:active {
+    transform: scale(0.95);
+    box-shadow: inset 2px 2px 8px rgba(0, 0, 0, 0.2),
+                inset -2px -2px 8px rgba(221, 0, 255, 0.2);
   }
 }

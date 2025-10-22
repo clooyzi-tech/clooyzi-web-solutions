@@ -1,0 +1,31 @@
+/* 💎 PREMIUM UNIVERSAL CTA BUTTON - 3D Neon Glow Style */
+@layer utilities {
+  .button-shadow-neoncta {
+    background: linear-gradient(135deg, #9b00ff, #ff0099);
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    padding: 0.75rem 1.8rem;
+    border-radius: 9999px;
+    box-shadow:
+      0 0 10px rgba(155, 0, 255, 0.4),
+      0 0 20px rgba(255, 0, 153, 0.3),
+      inset 0 0 6px rgba(255, 255, 255, 0.2);
+    transition: all 0.4s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
+  }
+
+  .button-shadow-neoncta-hover {
+    background: linear-gradient(135deg, #ff0099, #9b00ff);
+    box-shadow:
+      0 0 25px rgba(255, 0, 153, 0.8),
+      0 0 40px rgba(155, 0, 255, 0.6),
+      inset 0 0 10px rgba(255, 255, 255, 0.3);
+    transform: scale(1.1) translateY(-2px);
+    color: #fff;
+  }
+}

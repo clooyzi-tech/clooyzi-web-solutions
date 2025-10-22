@@ -1,0 +1,95 @@
+/* === Loader Container === */
+.logo-loader {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1e1e1e, #2a2a2a, #1e1e1e);
+  background-size: 400% 400%;
+  animation: backgroundFlow 19s ease-in-out infinite;
+  z-index: 9999;
+}
+
+/* === Logo Wrapper === */
+.logo-wrapper {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+/* === Glow Ring Around Logo === */
+.logo-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border-radius: 50%;
+  border: 3px solid rgba(32, 32, 32, 0.6);
+  box-shadow: 0 0 25px rgba(29, 29, 29, 0.8);
+  animation: rotateGlow 2.5s ease-in-out infinite;
+  transform-origin: center;
+}
+
+/* === Logo Image === */
+.logo-loader img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  animation: scaleSpin 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
+}
+
+/* === Animations === */
+
+
+/* === New Rotating Heartbeat Glow Animation (White Glow) === */
+@keyframes rotateGlow {
+  0% {
+    transform: rotate(0deg) scale(1);
+    opacity: 0.8;
+    box-shadow: 
+      0 0 20px rgba(255, 0, 255, 0.5),   /* magenta */
+      0 0 40px rgba(138, 43, 226, 0.3),  /* purple */
+      0 0 60px rgba(255, 20, 147, 0.2);  /* deep pink */
+  }
+
+  25% {
+    transform: rotate(90deg) scale(1.1);
+    opacity: 1;
+    box-shadow: 
+      0 0 25px rgba(255, 0, 255, 0.6),
+      0 0 50px rgba(138, 43, 226, 0.4),
+      0 0 80px rgba(255, 20, 147, 0.25);
+  }
+
+  50% {
+    transform: rotate(180deg) scale(0.95);
+    opacity: 0.9;
+    box-shadow: 
+      0 0 15px rgba(255, 0, 255, 0.4),
+      0 0 30px rgba(138, 43, 226, 0.25),
+      0 0 60px rgba(255, 20, 147, 0.15);
+  }
+
+  75% {
+    transform: rotate(270deg) scale(1.1);
+    opacity: 1;
+    box-shadow: 
+      0 0 25px rgba(255, 0, 255, 0.6),
+      0 0 50px rgba(138, 43, 226, 0.4),
+      0 0 80px rgba(255, 20, 147, 0.25);
+  }
+
+  100% {
+    transform: rotate(360deg) scale(1);
+    opacity: 0.8;
+    box-shadow: 
+      0 0 20px rgba(255, 0, 255, 0.5),
+      0 0 40px rgba(138, 43, 226, 0.3),
+      0 0 60px rgba(255, 20, 147, 0.2);
+  }
+}
