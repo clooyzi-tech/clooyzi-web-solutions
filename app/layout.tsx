@@ -36,10 +36,10 @@ export const metadata = {
     siteName: "Clooyzi Web Solutions",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/clooyzi-logo.jpeg",
         width: 1200,
         height: 630,
-        alt: "Clooyzi Web Solutions - Moodbidri Mangalore DK",
+        alt: "Clooyzi Web Solutions Logo",
       },
     ],
     locale: "en_US",
@@ -52,12 +52,12 @@ export const metadata = {
       "Clooyzi Web Solutions | Website Design & Development in Moodbidri, Mangalore (DK)",
     description:
       "Build your business website with Clooyzi Web Solutions — creative, professional, and secure web development in Moodbidri, Mangalore, Dakshina Kannada.",
-    images: ["/og-image.jpg"],
+    images: ["/clooyzi-logo.jpeg"],
   },
   icons: {
-    icon: "/logo.ico", // main favicon
-    shortcut: "/logo.ico", // shortcut icon
-    apple: "/logo.ico", // Apple touch icon
+    icon: "/clooyzi-logo.jpeg",
+    shortcut: "/clooyzi-logo.jpeg",
+    apple: "/clooyzi-logo.jpeg",
   },
 };
 
