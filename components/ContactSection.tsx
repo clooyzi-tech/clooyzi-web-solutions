@@ -26,7 +26,7 @@ const ContactSection = forwardRef<ContactFormRef, ContactSectionProps>(
               {/* Contact Info */}
               <div className="grid gap-6">
                 <ContactInfo icon={Smartphone} label="Phone" value="+91 9353472169" />
-                <ContactInfo icon={Globe} label="Email" value="clooyzi@clooyzi.com" />
+                <ContactInfo icon={Globe} label="Email" value="clooyzi@gmail.com" />
                 <ContactInfo icon={Database} label="Address" value="DK, Mangalore" />
               </div>
 
