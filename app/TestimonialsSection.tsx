@@ -15,7 +15,7 @@ const testimonials: Testimonial[] = [
     author: "Sarah Johnson",
     company: "FinTech Solutions",
     image: "/placeholder.svg",
-  },
+  }, 
   {
     quote: "The cybersecurity services provided by Clooyzi have given us peace of mind. Their expertise in this field is unmatched.",
     author: "Michael Chen",
