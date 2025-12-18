@@ -20,7 +20,7 @@ function verifyToken(request: NextRequest) {
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const decoded = verifyToken(request)
   if (!decoded) {
@@ -29,7 +29,8 @@ export async function PUT(
 
   try {
     const { title, description, image_url, project_link } = await request.json()
-    const id = parseInt(params.id)
+    const { id: paramId } = await params
+    const id = parseInt(paramId)
 
     if (!title || !description || !image_url || !project_link) {
       return NextResponse.json({ error: 'All fields are required' }, { status: 400 })
@@ -54,7 +55,7 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const decoded = verifyToken(request)
   if (!decoded) {
@@ -62,7 +63,8 @@ export async function DELETE(
   }
 
   try {
-    const id = parseInt(params.id)
+    const { id: paramId } = await params
+    const id = parseInt(paramId)
 
     const { error } = await supabase
       .from('works')
