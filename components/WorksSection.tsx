@@ -1,33 +1,44 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { ArrowRight } from "lucide-react";
-
-const works = [
-  {
-    title: "Clooyzi.com",
-    description: "A modern tech solutions company offering software, video, and design services — crafted with Next.js & Tailwind.",
-    image: "clooyzi.png",
-    link: "https://clooyzi.com",
-  },
-  {
-    title: "Framyra.com",
-    description: "Framyra — property management and hospitality, ensuring seamless care and elevated guest experiences.",
-    image: "framyra.png",
-    link: "https://framyra.com",
-  },
-  {
-    title: "Sahasra Energy",
-    description: "A clean energy company website showcasing advanced renewable technology and green initiatives.",
-    image: "sahasra.png",
-    link: "https://sahasraenergy.com",
-  },
-];
+import { Work } from "@/lib/supabase";
 
 export default function WorksSection() {
-  const scrollToContact = () => {
-    const contactSection = document.getElementById("contact");
-    if (contactSection) contactSection.scrollIntoView({ behavior: "smooth" });
+  const [works, setWorks] = useState<Work[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchWorks();
+  }, []);
+
+  const fetchWorks = async () => {
+    try {
+      const response = await fetch('/api/works');
+      if (response.ok) {
+        const data = await response.json();
+        setWorks(data);
+      }
+    } catch (error) {
+      console.error('Error fetching works:', error);
+    } finally {
+      setLoading(false);
+    }
   };
+
+  const handleViewAll = () => {
+    window.location.href = '/works';
+  };
+
+  if (loading) {
+    return (
+      <section id="works" className="py-20 md:py-28 px-6 md:px-16 bg-[#1e1e1e] text-center relative overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-white">Loading works...</div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="works" className="py-20 md:py-28 px-6 md:px-16 bg-[#1e1e1e] text-center relative overflow-hidden">
@@ -42,17 +53,17 @@ export default function WorksSection() {
           </p>
         </div>
 
-        {/* Project Grid */}
+        {/* Project Grid - Show only latest 3 */}
         <div className="grid gap-10 md:grid-cols-3">
-          {works.map((work, idx) => (
+          {works.slice(0, 3).map((work, idx) => (
             <div
               key={idx}
               className="group relative bg-[#292929] rounded-2xl overflow-hidden border border-gray-700/30 hover:border-purple-500/40 shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-purple-500/30"
             >
-              <a href={work.link} target="_blank" rel="noopener noreferrer">
+              <a href={work.project_link} target="_blank" rel="noopener noreferrer">
                 <div className="relative w-full h-56 overflow-hidden">
                   <img
-                    src={work.image}
+                    src={work.image_url}
                     alt={work.title}
                     className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110"
                   />
@@ -66,12 +77,12 @@ export default function WorksSection() {
                 </h3>
                 <p className="text-sm text-gray-300 mb-4 leading-relaxed">{work.description}</p>
                 <a
-                  href={work.link}
+                  href={work.project_link}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center rounded-full button-shadow-clooyzi hover:button-shadow-clooyzi-hover text-white font-medium text-sm px-5 py-2 transition-all duration-300"
                 >
-                  Visit Website
+                  Live Demo
                   <ArrowRight className="ml-2 h-4 w-4 inline-block transition-transform group-hover:translate-x-1" />
                 </a>
               </div>
@@ -79,14 +90,16 @@ export default function WorksSection() {
           ))}
         </div>
 
-        <div className="mt-16">
-          <button
-            onClick={scrollToContact}
-            className="rounded-full button-shadow-clooyzi hover:button-shadow-clooyzi-hover px-8 py-3 font-semibold text-white text-sm transition-all duration-300"
-          >
-            View More
-          </button>
-        </div>
+        {works.length > 3 && (
+          <div className="mt-16">
+            <button
+              onClick={handleViewAll}
+              className="rounded-full button-shadow-clooyzi hover:button-shadow-clooyzi-hover px-8 py-3 font-semibold text-white text-sm transition-all duration-300"
+            >
+              View All Works
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

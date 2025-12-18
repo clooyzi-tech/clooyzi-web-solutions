@@ -6,9 +6,7 @@ export async function POST(req: Request) {
 
   // Create transporter
   const transporter = nodemailer.createTransport({
-    host: process.env.EMAIL_HOST,
-    port: parseInt(process.env.EMAIL_PORT || '587'),
-    secure: false,
+    service: "gmail",
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
@@ -16,9 +14,15 @@ export async function POST(req: Request) {
   });
 
   try {
+    const recipientEmail = process.env.EMAIL_TO || process.env.EMAIL_USER;
+    
+    if (!recipientEmail) {
+      throw new Error('No recipient email configured');
+    }
+
     await transporter.sendMail({
       from: `"${name}" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_TO,
+      to: recipientEmail,
       subject: `New Contact Form Submission from ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9;">
