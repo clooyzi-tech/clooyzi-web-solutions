@@ -20,3 +20,12 @@ export type AdminUser = {
   password_hash: string
   created_at: string
 }
+
+export type Testimonial = {
+  id: number
+  quote: string
+  author: string
+  company: string
+  image: string
+  created_at: string
+}

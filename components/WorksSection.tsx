@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { ArrowRight } from "lucide-react";
 import { Work } from "@/lib/supabase";
+import Link from "next/link";
 
 export default function WorksSection() {
   const [works, setWorks] = useState<Work[]>([]);
@@ -26,9 +27,7 @@ export default function WorksSection() {
     }
   };
 
-  const handleViewAll = () => {
-    window.location.href = '/works';
-  };
+
 
   if (loading) {
     return (
@@ -92,12 +91,12 @@ export default function WorksSection() {
 
         {works.length > 3 && (
           <div className="mt-16">
-            <button
-              onClick={handleViewAll}
-              className="rounded-full button-shadow-clooyzi hover:button-shadow-clooyzi-hover px-8 py-3 font-semibold text-white text-sm transition-all duration-300"
+            <Link
+              href="/works"
+              className="inline-block rounded-full button-shadow-clooyzi hover:button-shadow-clooyzi-hover px-8 py-3 font-semibold text-white text-sm transition-all duration-300"
             >
               View All Works
-            </button>
+            </Link>
           </div>
         )}
       </div>

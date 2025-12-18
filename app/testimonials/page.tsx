@@ -3,13 +3,14 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Testimonial } from "@/lib/supabase";
-import Link from "next/link";
+import PageLoader from "@/components/page-loader-software";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 const defaultTestimonials: Testimonial[] = [
   {
     id: 1,
-    quote:
-      "Hi Team, A big thank you to everyone for the fantastic work on Framyra website! The design, color combinations, and overall presentation are truly impressive. I appreciate your quick delivery and teamwork in bringing this to life. Special thanks to Nikhil for ensuring a great final output. Wishing your young, dynamic team continued success and many more creative projects ahead!",
+    quote: "Hi Team, A big thank you to everyone for the fantastic work on Framyra website! The design, color combinations, and overall presentation are truly impressive. I appreciate your quick delivery and teamwork in bringing this to life. Special thanks to Nikhil for ensuring a great final output. Wishing your young, dynamic team continued success and many more creative projects ahead!",
     author: "Jason",
     company: "Framyra",
     image: "/clooyzi.png",
@@ -17,8 +18,7 @@ const defaultTestimonials: Testimonial[] = [
   },
   {
     id: 2,
-    quote:
-      "The cybersecurity services provided by Clooyzi have given us peace of mind. Their expertise in this field is unmatched.",
+    quote: "The cybersecurity services provided by Clooyzi have given us peace of mind. Their expertise in this field is unmatched.",
     author: "Michael Chen",
     company: "Global Retail Inc.",
     image: "/clooyzi.png",
@@ -26,8 +26,7 @@ const defaultTestimonials: Testimonial[] = [
   },
   {
     id: 3,
-    quote:
-      "Working with Clooyzi on our VR training program was a game-changer. The immersive experience they created has improved our training efficiency by 200%.",
+    quote: "Working with Clooyzi on our VR training program was a game-changer. The immersive experience they created has improved our training efficiency by 200%.",
     author: "Emily Rodriguez",
     company: "Education First",
     image: "/clooyzi.png",
@@ -46,7 +45,6 @@ function TestimonialCard({ quote, author, company, image }: Omit<Testimonial, 'i
 
   return (
     <Card className="group relative flex flex-col h-full bg-gradient-to-b from-[#2e2e2e] to-[#1f1f1f] rounded-2xl border border-purple-600/20 shadow-md hover:shadow-purple-500/30 transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02] overflow-hidden">
-      {/* Subtle glowing gradient ring */}
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-tr from-purple-600/30 via-pink-500/20 to-transparent blur-xl transition-opacity duration-700" />
 
       <CardContent className="relative z-10 flex-1 pt-8 flex flex-col items-center justify-between">
@@ -56,7 +54,6 @@ function TestimonialCard({ quote, author, company, image }: Omit<Testimonial, 'i
           className="h-16 w-16 rounded-full object-cover mb-4 border border-purple-400/30 shadow-md shadow-purple-500/20"
         />
 
-        {/* Decorative Quote Icon */}
         <div className="mb-4">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -103,71 +100,67 @@ function TestimonialCard({ quote, author, company, image }: Omit<Testimonial, 'i
   );
 }
 
-export default function TestimonialsSection() {
-  const [testimonials, setTestimonials] = useState<Testimonial[]>(defaultTestimonials)
-  const [loading, setLoading] = useState(true)
+export default function TestimonialsPage() {
+  const [testimonials, setTestimonials] = useState<Testimonial[]>(defaultTestimonials);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchTestimonials()
-  }, [])
+    fetchTestimonials();
+  }, []);
 
   const fetchTestimonials = async () => {
     try {
-      const response = await fetch('/api/testimonials')
+      const response = await fetch('/api/testimonials');
       if (response.ok) {
-        const data = await response.json()
+        const data = await response.json();
         if (data.length > 0) {
-          setTestimonials(data)
+          setTestimonials(data);
         }
       }
     } catch (error) {
-      console.error('Error fetching testimonials:', error)
+      console.error('Error fetching testimonials:', error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
+  };
+
+  if (loading) {
+    return <PageLoader />;
   }
 
   return (
-    <section
-      id="testimonials"
-      className="relative py-20 md:py-28 bg-[#1f1f1f] overflow-hidden"
-      aria-labelledby="testimonials-title"
-    >
-      {/* Subtle animated gradient orbs */}
-      <div className="absolute -top-32 -left-32 w-72 h-72 bg-purple-600/30 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-0 right-0 w-80 h-80 bg-pink-500/20 rounded-full blur-3xl animate-pulse" />
-
-      <div className="container relative z-10 px-4 md:px-8 text-center">
-        <h2
-          id="testimonials-title"
-          className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4"
-        >
-          What Our Clients Say
-        </h2>
-        <p className="max-w-[700px] mx-auto text-gray-400 text-base md:text-lg leading-relaxed mb-12">
-          Trusted by startups, professionals, and global businesses — here’s
-          what our clients have to say about their experience with Clooyzi.
-        </p>
-
-        {/* Responsive Grid - Show only 3 */}
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {testimonials.slice(0, 3).map((testimonial, index) => (
-            <TestimonialCard key={index} {...testimonial} />
-          ))}
-        </div>
-
-        {/* View All Button */}
-        {testimonials.length > 3 && (
-          <div className="mt-16">
-            <Link
-              href="/testimonials"
-              className="inline-block rounded-full button-shadow-clooyzi hover:button-shadow-clooyzi-hover px-8 py-3 font-semibold text-white text-sm transition-all duration-300"
-            >
-              View All Testimonials
-            </Link>
-          </div>
-        )}
+    <>
+      <Navbar />
+      <div className="min-h-screen bg-[#1e1e1e] relative overflow-hidden">
+      {/* Animated Background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-purple-600/20 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-pink-500/20 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-3xl animate-pulse" />
       </div>
-    </section>
+
+      <section className="relative py-20 md:py-28 px-6 md:px-16">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-14">
+            <h1 className="text-4xl md:text-5xl font-extrabold text-white drop-shadow-md tracking-tight mb-4">
+              Client Testimonials
+            </h1>
+            <p className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto">
+              Trusted by startups, professionals, and global businesses — here's what our clients have to say about their experience with Clooyzi.
+            </p>
+          </div>
+
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {testimonials.map((testimonial) => (
+              <TestimonialCard key={testimonial.id} {...testimonial} />
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+    <div className="bg-black">
+      <Footer />
+    </div>
+    </>
   );
 }
